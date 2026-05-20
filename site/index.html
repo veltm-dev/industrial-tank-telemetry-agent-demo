@@ -40,21 +40,13 @@
     nav {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 24px;
+      justify-content: flex-start;
       min-height: 72px;
     }
 
     .brand {
       font-weight: 760;
       color: var(--navy);
-    }
-
-    .navlinks {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      font-size: 14px;
     }
 
     a {
@@ -260,9 +252,6 @@
       }
 
       nav {
-        align-items: flex-start;
-        flex-direction: column;
-        justify-content: center;
         padding: 16px 0;
       }
 
@@ -289,12 +278,6 @@
     <div class="wrap">
       <nav aria-label="Primary">
         <div class="brand">Industrial Tank Telemetry Demo</div>
-        <div class="navlinks">
-          <a href="#surfaces">Surfaces</a>
-          <a href="#verify">Verify</a>
-          <a href="#governance">Governance</a>
-          <a href="#disclaimer">Disclaimer</a>
-        </div>
       </nav>
 
       <div class="hero">

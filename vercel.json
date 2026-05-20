@@ -1,11 +1,20 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "builds": [
     {
-      "source": "/",
-      "destination": "/site/index.html"
+      "src": "site/index.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/site/index.html"
+    },
+    {
+      "src": "/site/index.html",
+      "dest": "/site/index.html"
     }
   ]
 }
-

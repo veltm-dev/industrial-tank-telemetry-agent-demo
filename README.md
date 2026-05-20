@@ -4,6 +4,11 @@ A synthetic, non-proprietary proof of concept showing how an industrial tank tel
 
 > **Important:** This demo uses synthetic data only. It does not access AMETEK, Telular, SkyBitz, SmartTank, customer systems, customer records, proprietary portals, screenshots, logos, addresses, users, phone numbers, emails, or device records. It is not affiliated with or endorsed by those companies. The purpose is to demonstrate an inspectable product and architecture direction.
 
+Live links:
+
+- GitHub repo: <https://github.com/veltm-dev/industrial-tank-telemetry-agent-demo>
+- Static landing page: <https://industrial-tank-telemetry-agent-dem.vercel.app>
+
 ## What This Demo Proves
 
 This is a same-day credibility packet, not a production SaaS application. It proves that tank telemetry can become programmable without replacing the existing portal:

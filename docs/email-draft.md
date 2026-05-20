@@ -15,10 +15,10 @@ To make this concrete, I built a small non-proprietary proof of concept using sy
 
 Links:
 
-- 2-minute demo: [link]
-- GitHub repo: [link]
-- One-page concept brief: [link]
-- Landing page: [link]
+- 2-minute demo: [recording link]
+- GitHub repo: https://github.com/veltm-dev/industrial-tank-telemetry-agent-demo
+- One-page concept brief: https://github.com/veltm-dev/industrial-tank-telemetry-agent-demo/blob/main/docs/one-page-brief.md
+- Landing page: https://industrial-tank-telemetry-agent-dem.vercel.app
 
 My thesis is simple: the valuable telemetry already exists. The next platform step is exposing it safely and programmatically for dispatch systems, enterprise customers, internal support teams, integration partners, and agentic workflows.
 

@@ -228,7 +228,7 @@ src/tankdemo/cli.py          Typer CLI exposed as tankctl
 src/tankdemo/mcp_server.py   Read-only MCP server tools
 src/tankdemo/risk.py         Alarm/risk/diagnostic summary logic
 data/                        Synthetic organizations, locations, tanks, readings, alerts, field catalog
-docs/                        Brief, email, architecture, security, demo script, field map
+docs/                        Public architecture, API, CLI, MCP, security, brief, and field map docs
 site/index.html              Static landing page for quick publishing
 vercel.json                  Static Vercel route for the landing page
 ```

@@ -1,6 +1,6 @@
 # API Spec Summary
 
-This is a same-day proof-of-concept API, not a production API contract. It is read-only and uses synthetic data only.
+This is a concept API summary, not a production API contract. It is read-only and uses synthetic data only.
 
 ## Primary endpoints
 

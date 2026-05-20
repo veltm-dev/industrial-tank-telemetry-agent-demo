@@ -345,15 +345,21 @@ Battery: 95%</pre>
       <h2 id="verify-title">Verification Commands</h2>
       <div class="commands">
         <div class="console">
-          <div class="console-head"><span>install and API</span></div>
-          <pre>pip install -e '.[dev,mcp]'
-uvicorn tankdemo.api:app --reload
-open http://localhost:8000/docs
-pytest</pre>
+          <div class="console-head"><span>terminal 1: install and run API</span></div>
+          <pre>cd industrial-tank-telemetry-agent-demo
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -e '.[dev,mcp]'
+python -m uvicorn tankdemo.api:app --reload
+
+# then open http://localhost:8000/docs</pre>
         </div>
         <div class="console">
-          <div class="console-head"><span>CLI and MCP</span></div>
-          <pre>tankctl summary
+          <div class="console-head"><span>terminal 2: tests, CLI, MCP</span></div>
+          <pre>cd industrial-tank-telemetry-agent-demo
+source .venv/bin/activate
+python -m pytest
+tankctl summary
 tankctl tanks at-risk --days 7
 tankctl tank explain TK-101
 tankctl monitors health

@@ -21,10 +21,13 @@ This is a same-day credibility packet, not a production SaaS application. It pro
 ## Fast start
 
 ```bash
-python -m venv .venv
+git clone https://github.com/veltm-dev/industrial-tank-telemetry-agent-demo.git
+cd industrial-tank-telemetry-agent-demo
+python3 -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
-pip install -e '.[dev,mcp]'
-uvicorn tankdemo.api:app --reload
+python -m pip install --upgrade pip
+python -m pip install -e '.[dev,mcp]'
+python -m uvicorn tankdemo.api:app --reload
 ```
 
 Open API docs:
@@ -36,6 +39,7 @@ http://localhost:8000/docs
 Run CLI commands:
 
 ```bash
+source .venv/bin/activate
 tankctl summary
 tankctl fields list
 tankctl locations list
@@ -60,7 +64,8 @@ site/index.html
 Run tests:
 
 ```bash
-pytest
+source .venv/bin/activate
+python -m pytest
 ```
 
 Run the MCP server over stdio:
@@ -148,13 +153,16 @@ vercel.json                  Static Vercel route for the landing page
 ## How to verify the work
 
 1. Clone the repo.
-2. Run `pip install -e '.[dev,mcp]'`.
-3. Start the API with `uvicorn tankdemo.api:app --reload`.
-4. Open `/docs` and call `/summary`, `/tanks/{tank_id}/detail`, `/diagnostics`, and `/agent-policy`.
-5. Run the `tankctl` commands above.
-6. Run `pytest`.
-7. Start the MCP server with `python -m tankdemo.mcp_server`.
-8. Review `docs/security-model.md`, `docs/mcp-tools.md`, `docs/portal-field-map.md`, and `docs/one-page-brief.md`.
+2. Create and activate a virtual environment with `python3 -m venv .venv` and `source .venv/bin/activate`.
+3. Run `python -m pip install -e '.[dev,mcp]'` from the repo root.
+4. Start the API with `python -m uvicorn tankdemo.api:app --reload`.
+5. Open `/docs` and call `/summary`, `/tanks/{tank_id}/detail`, `/diagnostics`, and `/agent-policy`.
+6. In another activated terminal, run the `tankctl` commands above.
+7. Run `python -m pytest`.
+8. Start the MCP server with `python -m tankdemo.mcp_server`.
+9. Review `docs/security-model.md`, `docs/mcp-tools.md`, `docs/portal-field-map.md`, and `docs/one-page-brief.md`.
+
+The API server runs in the foreground. Keep that terminal open while viewing `/docs`; use a second terminal for tests and CLI commands.
 
 ## Suggested next step
 

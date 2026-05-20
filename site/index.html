@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Industrial Tank Telemetry API/CLI/MCP Demo</title>
+  <style>
+    :root {
+      --ink: #16202a;
+      --muted: #536170;
+      --line: #d8e0e8;
+      --panel: #ffffff;
+      --bg: #f6f8fa;
+      --navy: #14324a;
+      --teal: #137c7a;
+      --amber: #b46b1b;
+      --red: #b42318;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 72px;
+    }
+
+    .brand {
+      font-weight: 760;
+      color: var(--navy);
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+
+    a {
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr);
+      gap: 44px;
+      align-items: center;
+      padding: 72px 0 56px;
+    }
+
+    h1 {
+      max-width: 780px;
+      margin: 0;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.04;
+      letter-spacing: 0;
+      color: var(--navy);
+    }
+
+    .lead {
+      max-width: 720px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
+      border-radius: 6px;
+      border: 1px solid var(--navy);
+      font-weight: 680;
+      font-size: 14px;
+    }
+
+    .button.primary {
+      color: #ffffff;
+      background: var(--navy);
+    }
+
+    .button.secondary {
+      color: var(--navy);
+      background: #ffffff;
+    }
+
+    .console {
+      background: #101820;
+      color: #d9edf0;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 18px 48px rgba(16, 24, 32, .18);
+    }
+
+    .console-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, .12);
+      color: #93a5b1;
+      font-size: 13px;
+    }
+
+    pre {
+      margin: 0;
+      padding: 18px;
+      overflow-x: auto;
+      font: 13px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    main {
+      padding: 36px 0 56px;
+    }
+
+    section {
+      margin-top: 36px;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 28px;
+      line-height: 1.15;
+      letter-spacing: 0;
+      color: var(--navy);
+    }
+
+    .surface-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .surface {
+      padding: 20px;
+      border-right: 1px solid var(--line);
+    }
+
+    .surface:last-child { border-right: 0; }
+
+    .surface h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      color: var(--navy);
+    }
+
+    .surface p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .status-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .metric {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--navy);
+      font-size: 22px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .notice {
+      padding: 20px;
+      border-left: 4px solid var(--amber);
+      background: #fff8ef;
+      color: #4d3720;
+      border-radius: 4px;
+    }
+
+    .commands {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    code {
+      color: #0f3b57;
+      background: #edf4f7;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-size: .95em;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      padding: 28px 0;
+      font-size: 14px;
+      background: #ffffff;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .commands {
+        grid-template-columns: 1fr;
+      }
+
+      .surface-grid,
+      .status-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      .wrap {
+        width: min(100% - 28px, 1120px);
+      }
+
+      nav {
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        padding: 16px 0;
+      }
+
+      .hero {
+        padding: 48px 0 34px;
+      }
+
+      .surface-grid,
+      .status-list {
+        grid-template-columns: 1fr;
+      }
+
+      .surface {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .surface:last-child { border-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav aria-label="Primary">
+        <div class="brand">Industrial Tank Telemetry Demo</div>
+        <div class="navlinks">
+          <a href="#surfaces">Surfaces</a>
+          <a href="#verify">Verify</a>
+          <a href="#governance">Governance</a>
+          <a href="#disclaimer">Disclaimer</a>
+        </div>
+      </nav>
+
+      <div class="hero">
+        <div>
+          <h1>Making tank telemetry programmable: API, CLI, MCP, and agent-ready workflows for industrial IoT.</h1>
+          <p class="lead">A synthetic, inspectable concept demo for field-aware inventory, alarm, monitor-health, location, diagnostics, webhook, and runout-risk workflows.</p>
+          <div class="actions">
+            <a class="button primary" href="#verify">Run the demo</a>
+            <a class="button secondary" href="#disclaimer">Read the data boundary</a>
+          </div>
+        </div>
+
+        <div class="console" aria-label="Demo command preview">
+          <div class="console-head">
+            <span>tankctl</span>
+            <span>read-only synthetic demo</span>
+          </div>
+          <pre>$ tankctl tanks at-risk --days 7
+TK-101  critical  Critical Low Alarm
+TK-105  critical  Critical Low Alarm
+TK-107  watch     No Recent Update
+
+$ tankctl tank diagnostics TK-101
+RTU: RTU-SYN-0001
+RSSI: 62
+Battery: 95%</pre>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="surfaces" aria-labelledby="surfaces-title">
+      <h2 id="surfaces-title">Inspectable Product Surfaces</h2>
+      <div class="surface-grid">
+        <div class="surface">
+          <h3>REST API</h3>
+          <p>Summary, tanks, readings, alerts, locations, diagnostics, alarm config, call schedules, map points, webhook events, and agent policy.</p>
+        </div>
+        <div class="surface">
+          <h3>CLI</h3>
+          <p>Repeatable support and integration workflows through <code>tankctl</code>, including diagnostics and runout-risk review.</p>
+        </div>
+        <div class="surface">
+          <h3>MCP</h3>
+          <p>Read-only tools for agents to summarize inventory, inspect tank detail, explain delivery priority, and review monitor health.</p>
+        </div>
+        <div class="surface">
+          <h3>Governance</h3>
+          <p>Read-only defaults, explicit write boundaries, approval gates, and audit expectations for production workflows.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="model-title">
+      <h2 id="model-title">Field-Aware Model</h2>
+      <div class="status-list">
+        <div class="metric"><strong>Inventory</strong><span>Net/gross volume, level, capacity, volume percentage, available capacity, and reading history.</span></div>
+        <div class="metric"><strong>Alarms</strong><span>Low/high thresholds, critical limits, alarm status, safety stock, reorder level, fill detect, and short-fill events.</span></div>
+        <div class="metric"><strong>Monitor Health</strong><span>Communication status, sensor status, battery percentage, RSSI, RTU diagnostics, call schedules, and failed calls.</span></div>
+      </div>
+    </section>
+
+    <section id="verify" aria-labelledby="verify-title">
+      <h2 id="verify-title">Verification Commands</h2>
+      <div class="commands">
+        <div class="console">
+          <div class="console-head"><span>install and API</span></div>
+          <pre>pip install -e '.[dev,mcp]'
+uvicorn tankdemo.api:app --reload
+open http://localhost:8000/docs
+pytest</pre>
+        </div>
+        <div class="console">
+          <div class="console-head"><span>CLI and MCP</span></div>
+          <pre>tankctl summary
+tankctl tanks at-risk --days 7
+tankctl tank explain TK-101
+tankctl monitors health
+python -m tankdemo.mcp_server</pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="governance" aria-labelledby="governance-title">
+      <h2 id="governance-title">Governed Programmability</h2>
+      <p>Agents and integrations can read summaries, tank status, diagnostics, alerts, runout risk, location metadata, and field catalogs. Operational writes such as moving tanks, editing thresholds, acknowledging alerts, creating delivery orders, notifying customers, or changing users are intentionally excluded from this demo and should require explicit scopes, audit logs, and human approval in production.</p>
+    </section>
+
+    <section id="disclaimer" aria-labelledby="disclaimer-title">
+      <h2 id="disclaimer-title">Data Boundary</h2>
+      <div class="notice">
+        This demo uses synthetic data only. It does not access AMETEK, Telular, SkyBitz, SmartTank, customer systems, proprietary portals, screenshots, logos, customer names, street addresses, users, emails, phone numbers, real device IDs, or proprietary records. It is not affiliated with or endorsed by those companies.
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Built as an inspectable credibility packet: code, tests, docs, landing page, API, CLI, MCP server, and synthetic JSON fixtures.</div>
+  </footer>
+</body>
+</html>

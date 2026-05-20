@@ -1,0 +1,18 @@
+[
+  {
+    "id": "ORG-001",
+    "name": "Demo Fuel Operations",
+    "state": "Demo State",
+    "active": true,
+    "parent_organization": null,
+    "tank_count": 7
+  },
+  {
+    "id": "ORG-002",
+    "name": "Demo Energy Rollup",
+    "state": "Demo State",
+    "active": true,
+    "parent_organization": "ORG-001",
+    "tank_count": 1
+  }
+]

@@ -226,7 +226,7 @@
       <details>
         <summary>Why would this matter to a telemetry business?</summary>
         <div class="answer">
-          <p>It could reduce friction around integrations, support, diagnostics, customer reporting, dispatch workflows, and future agent workflows. The value is making operational telemetry easier to access safely without opening up risky write access.</p>
+          <p>It creates a customer-facing integration path for operational telemetry. Instead of relying on CSV exports, manual portal checks, or one-off integration work, customers could connect tank inventory, alarms, diagnostics, runout risk, and delivery signals directly into their own dispatch, ERP, analytics, and operations systems.</p>
         </div>
       </details>
 
@@ -234,6 +234,13 @@
         <summary>Who would use each surface?</summary>
         <div class="answer">
           <p>The portal is for customers and operators. The API is for software and integrations. The CLI is for support, QA, product, and engineering teams. The MCP layer is for approved AI agents. Webhooks are for event-driven integrations.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Could this help customers directly?</summary>
+        <div class="answer">
+          <p>Yes. That is the core customer value. In a production version, customers could ingest near real-time telemetry into their own systems without waiting for CSV exports or manually copying portal data. The portal remains the human surface, while APIs, webhooks, and governed assistant workflows let customers connect inventory, alarm state, runout risk, and delivery signals into dispatch workflows with drivers, internal operations tools, ERPs, and reporting systems.</p>
         </div>
       </details>
 
@@ -261,7 +268,7 @@
       <details>
         <summary>What is the business outcome?</summary>
         <div class="answer">
-          <p>Faster integrations, more repeatable support workflows, better diagnostic visibility, safer AI enablement, and clearer governance around operational actions. This is platform programmability, not AI for its own sake.</p>
+          <p>Customers get cleaner access to the telemetry they already depend on, and the platform becomes easier to integrate into real operations: dispatch planning, driver workflows, replenishment decisions, reporting, and exception handling. Internally, the same layer can improve support workflows, diagnostics, and agent safety. This is platform programmability, not AI for its own sake.</p>
         </div>
       </details>
 
@@ -282,7 +289,7 @@
       <details>
         <summary>What would a safe pilot look like?</summary>
         <div class="answer">
-          <p>Start with read-only workflows: summary, tank detail, diagnostics, alerts, runout risk, monitor health, webhook event definitions, and agent-safe tools. No operational writes at first. That gives value while keeping risk low.</p>
+          <p>Start with read-only customer integration workflows: summary, tank detail, diagnostics, alerts, runout risk, monitor health, and webhook event definitions that can feed a customer dispatch or operations system. No operational writes at first. That proves customer value while keeping risk low.</p>
         </div>
       </details>
 

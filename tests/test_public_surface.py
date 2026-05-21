@@ -28,6 +28,22 @@ def test_internal_prep_files_are_not_tracked():
     assert forbidden.isdisjoint(tracked_files())
 
 
+def test_static_faq_page_is_public_and_linked():
+    files = set(tracked_files())
+
+    assert "site/faqs.html" in files
+
+    landing = (ROOT / "site/index.html").read_text(encoding="utf-8")
+    faq = (ROOT / "site/faqs.html").read_text(encoding="utf-8")
+    vercel_config = (ROOT / "vercel.json").read_text(encoding="utf-8")
+
+    assert 'href="/faqs"' in landing
+    assert "Back to landing page" in faq
+    assert '"src": "/faqs"' in vercel_config
+    assert "What is this, in plain English?" in faq
+    assert "not affiliated with or endorsed by" in faq
+
+
 def test_public_markdown_and_html_do_not_include_internal_prep_language():
     forbidden_phrases = [
         "".join(["Co", "dex", " Agent Instructions"]),

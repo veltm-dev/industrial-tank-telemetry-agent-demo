@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FAQs - Industrial Tank Telemetry Demo</title>
+  <style>
+    :root {
+      --ink: #16202a;
+      --muted: #536170;
+      --line: #d8e0e8;
+      --panel: #ffffff;
+      --bg: #f6f8fa;
+      --navy: #14324a;
+      --teal: #137c7a;
+      --amber: #b46b1b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    header,
+    footer {
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      border-bottom: 0;
+      color: var(--muted);
+      padding: 28px 0;
+      font-size: 14px;
+    }
+
+    .wrap {
+      width: min(980px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    a {
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    .brand {
+      font-weight: 760;
+      color: var(--navy);
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #ffffff;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    main {
+      padding: 56px 0 64px;
+    }
+
+    h1 {
+      max-width: 780px;
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .note {
+      margin-top: 24px;
+      padding: 18px;
+      border-left: 4px solid var(--amber);
+      background: #fff8ef;
+      color: #4d3720;
+      border-radius: 4px;
+    }
+
+    .faq-list {
+      margin-top: 36px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--panel);
+    }
+
+    details {
+      border-bottom: 1px solid var(--line);
+      background: #ffffff;
+    }
+
+    details:last-child { border-bottom: 0; }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 18px 20px;
+      color: var(--navy);
+      font-size: 17px;
+      font-weight: 720;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: "+";
+      flex: 0 0 auto;
+      color: var(--teal);
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    details[open] summary::after { content: "-"; }
+
+    .answer {
+      padding: 0 20px 20px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .answer p {
+      max-width: 820px;
+      margin: 0;
+    }
+
+    code {
+      color: #0f3b57;
+      background: #edf4f7;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-size: .95em;
+    }
+
+    @media (max-width: 620px) {
+      .wrap {
+        width: min(100% - 28px, 980px);
+      }
+
+      nav {
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        padding: 16px 0;
+      }
+
+      main {
+        padding: 42px 0 54px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav aria-label="Primary">
+        <div class="brand">Industrial Tank Telemetry Demo</div>
+        <a class="back" href="/">Back to landing page</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>FAQs</h1>
+    <p class="lead">Plain-English answers for product, operations, and business stakeholders evaluating the synthetic tank telemetry API, CLI, MCP, webhook, and governance concept.</p>
+
+    <div class="note">
+      This demo uses synthetic data only. It is not affiliated with or endorsed by AMETEK, Telular, SkyBitz, SmartTank, or any customer. It does not access customer systems, proprietary portals, screenshots, logos, addresses, users, phone numbers, emails, real device IDs, or proprietary records.
+    </div>
+
+    <section class="faq-list" aria-label="Frequently asked questions">
+      <details open>
+        <summary>What is this, in plain English?</summary>
+        <div class="answer">
+          <p>This is a synthetic demo showing how tank telemetry data could become safely programmable. The existing portal stays in place for human users, while API, CLI, MCP, and webhook surfaces make the same operational data usable by software systems, support teams, integration teams, and approved agents.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Are you trying to replace the existing portal?</summary>
+        <div class="answer">
+          <p>No. The thesis is the opposite: keep the portal. The portal remains the human interface. This demo shows a governed programmable layer beside it so integrations, support workflows, and agent-assisted workflows do not depend on manual portal clicks.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Is this using vendor, customer, or proprietary data?</summary>
+        <div class="answer">
+          <p>No. Everything is synthetic. There is no customer data, no real addresses, no real device IDs, no screenshots, no logos, no scraped portal content, and no proprietary records. It is a product-direction demo, not a clone or reverse-engineered system.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Why would this matter to a telemetry business?</summary>
+        <div class="answer">
+          <p>It could reduce friction around integrations, support, diagnostics, customer reporting, dispatch workflows, and future agent workflows. The value is making operational telemetry easier to access safely without opening up risky write access.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Who would use each surface?</summary>
+        <div class="answer">
+          <p>The portal is for customers and operators. The API is for software and integrations. The CLI is for support, QA, product, and engineering teams. The MCP layer is for approved AI agents. Webhooks are for event-driven integrations.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What is MCP, and why should a manager care?</summary>
+        <div class="answer">
+          <p>MCP is a way to expose approved tools to an AI assistant. Instead of giving an agent broad browser access, the platform can expose narrow read-only tools such as get tank status, summarize alerts, or explain delivery priority. That makes agent use more controlled and auditable.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Can the agent operate the same workflows as the CLI?</summary>
+        <div class="answer">
+          <p>Yes, through MCP tools rather than terminal commands. For example, <code>tankctl tanks at-risk --days 7</code> maps to an agent-callable tool such as <code>list_runout_risks(days=7)</code>. Same workflow, safer interface.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Could an agent accidentally change something important?</summary>
+        <div class="answer">
+          <p>Not in this demo. It is read-only. In a production system, writes such as changing thresholds, acknowledging alarms, moving tanks, notifying customers, or creating delivery orders should require explicit scopes, audit logs, and human approval.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What is the business outcome?</summary>
+        <div class="answer">
+          <p>Faster integrations, more repeatable support workflows, better diagnostic visibility, safer AI enablement, and clearer governance around operational actions. This is platform programmability, not AI for its own sake.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How is this different from just having an API?</summary>
+        <div class="answer">
+          <p>The API is one part. The larger idea is a governed surface: API for systems, CLI for internal repeatable workflows, MCP for approved agents, webhooks for event-driven integrations, and policy boundaries for safety.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Is this production-ready?</summary>
+        <div class="answer">
+          <p>No. It is intentionally a concept demo. A production version would need identity, tenant scoping, authorization, audit logging, rate limits, monitoring, data contracts, and security review. This repo proves the shape and workflow, not a production deployment.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What would a safe pilot look like?</summary>
+        <div class="answer">
+          <p>Start with read-only workflows: summary, tank detail, diagnostics, alerts, runout risk, monitor health, webhook event definitions, and agent-safe tools. No operational writes at first. That gives value while keeping risk low.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What risks should matter most?</summary>
+        <div class="answer">
+          <p>The main risks are data exposure, tenant isolation, unsafe write actions, auditability, and over-broad agent access. That is why the demo emphasizes read-only defaults, scopes, audit logs, and human approval for write actions.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Why build a working demo instead of sending a slide?</summary>
+        <div class="answer">
+          <p>A working demo makes the idea concrete. It shows the field model, the command workflows, the API routes, the agent boundary, and the governance posture in inspectable code instead of abstract product language.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What is the ask?</summary>
+        <div class="answer">
+          <p>The practical next step is a short product or technical conversation to determine whether a governed programmable layer around tank telemetry is relevant to roadmap, integrations, support workflows, or AI strategy.</p>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Built as an inspectable concept demo: code, tests, docs, landing page, API, CLI, MCP server, and synthetic JSON fixtures.</div>
+  </footer>
+</body>
+</html>

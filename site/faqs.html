@@ -247,35 +247,35 @@
       <details>
         <summary>What is MCP, and why should a manager care?</summary>
         <div class="answer">
-          <p>MCP is a way to expose approved tools to an AI assistant. Instead of giving an agent broad browser access, the platform can expose narrow read-only tools such as get tank status, summarize alerts, or explain delivery priority. That makes agent use more controlled and auditable.</p>
+          <p>MCP is a way to expose approved tools to an AI assistant. Instead of giving an agent broad browser access, the platform can expose narrow read-only tools such as get tank status, summarize alerts, or explain delivery priority. That makes agent use controlled, inspectable, and future-ready instead of improvised.</p>
         </div>
       </details>
 
       <details>
         <summary>Can the agent operate the same workflows as the CLI?</summary>
         <div class="answer">
-          <p>Yes, through MCP tools rather than terminal commands. For example, <code>tankctl tanks at-risk --days 7</code> maps to an agent-callable tool such as <code>list_runout_risks(days=7)</code>. Same workflow, safer interface.</p>
+          <p>Yes. The CLI proves repeatable operator and support workflows, and MCP exposes those same workflows as approved agent tools rather than raw terminal commands or browser automation. For example, <code>tankctl tanks at-risk --days 7</code> maps to an agent-callable tool such as <code>list_runout_risks(days=7)</code>. That future-proofs the platform because new agents can call stable, named tools instead of scraping the portal or inventing their own process.</p>
         </div>
       </details>
 
       <details>
         <summary>Could an agent accidentally change something important?</summary>
         <div class="answer">
-          <p>Not in this demo. It is read-only. In a production system, writes such as changing thresholds, acknowledging alarms, moving tanks, notifying customers, or creating delivery orders should require explicit scopes, audit logs, and human approval.</p>
+          <p>Not in this demo. It is read-only. In a production system, the safe pattern is to separate recommend or propose from approve and execute. Future write actions, such as changing thresholds, acknowledging alarms, moving tanks, notifying customers, or creating delivery orders, should require explicit scopes, tenant boundaries, audit logs, and human approval.</p>
         </div>
       </details>
 
       <details>
         <summary>What is the business outcome?</summary>
         <div class="answer">
-          <p>Customers get cleaner access to the telemetry they already depend on, and the platform becomes easier to integrate into real operations: dispatch planning, driver workflows, replenishment decisions, reporting, and exception handling. Internally, the same layer can improve support workflows, diagnostics, and agent safety. This is platform programmability, not AI for its own sake.</p>
+          <p>Customers can move near real-time tank telemetry into the systems where work actually happens, without waiting for CSV exports or manually copying portal data. That means inventory, alarm state, runout risk, diagnostics, and delivery signals can feed dispatch planning, delivery driver workflows, ERPs, reporting, support diagnostics, and approved integration partner workflows. The portal stays intact, but telemetry becomes operationally useful outside the portal.</p>
         </div>
       </details>
 
       <details>
         <summary>How is this different from just having an API?</summary>
         <div class="answer">
-          <p>The API is one part. The larger idea is a governed surface: API for systems, CLI for internal repeatable workflows, MCP for approved agents, webhooks for event-driven integrations, and policy boundaries for safety.</p>
+          <p>An API is only one interface. The larger idea is a governed programmable layer: API for systems, CLI for repeatable internal workflows, MCP for approved agents, webhooks for event-driven integrations, and policy boundaries for safety. Future agentic workflows need clear tool semantics, permissions, event triggers, auditability, and human-in-the-loop controls, not just endpoints.</p>
         </div>
       </details>
 
